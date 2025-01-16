@@ -1,5 +1,7 @@
 package com.revicemicroservice.controller;
 
+import java.util.List;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -48,6 +50,12 @@ public class ReviewController {
 	public ResponseEntity<ReviewModel> geteview(@PathVariable String reviewUuid) {
 		ReviewModel reviewModel = reviewService.getReviewUsingUuid(reviewUuid);
 		return new ResponseEntity<>(reviewModel, HttpStatus.CREATED);
+	}
+	
+	@GetMapping(UrlMapping.GET_REVIEW_USING_USER_OR_HODEK_ID)
+	public ResponseEntity<List<ReviewModel>> geteviewUsingUserAndHoleId(@RequestParam(required=false) String userUuid,@RequestParam(required = false) String hotelUuid) {
+		List<ReviewModel> reviewModels = reviewService.geteviewUsingUserAndHoleId(userUuid,hotelUuid);
+		return new ResponseEntity<>(reviewModels, HttpStatus.OK);
 	}
 
 	@PutMapping(UrlMapping.REVIEW_UUID)

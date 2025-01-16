@@ -18,4 +18,6 @@ public interface ReviewService {
 	
 	void deleteReview(String reviewUuuid);
 
+	List<ReviewModel> geteviewUsingUserAndHoleId(String userUuid, String hotelUuid);
+
 }

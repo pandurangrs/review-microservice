@@ -1,5 +1,7 @@
 package com.revicemicroservice.dao;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -38,6 +40,18 @@ public class ReviewDaoImpl implements ReviewDao {
 	@Override
 	public void deleteReview(Review review) {	
 		reviewRepo.delete(review);
+	}
+
+	@Override
+	public List<Review> getReviewUsingUserUuid(String userUuid) {
+		
+		return reviewRepo.findByUserUuid(userUuid);
+	}
+
+	@Override
+	public List<Review> getReviewUsingHotelUuid(String hotelUuid) {
+		// TODO Auto-generated method stub
+		return reviewRepo.findByHotelUuid(hotelUuid);
 	}
 
 }

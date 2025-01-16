@@ -1,5 +1,6 @@
 package com.revicemicroservice.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -83,6 +84,21 @@ public class ReviewServiceImpl implements ReviewService {
 		Review review = reviewDao.getReviewUsingUuid(reviewUuid);
 		reviewDao.deleteReview(review);
 
+	}
+
+	@Override
+	public List<ReviewModel> geteviewUsingUserAndHoleId(String userUuid, String hotelUuid) {
+		
+		List<ReviewModel> models=new ArrayList<>();
+		List<Review> review=new ArrayList<>();
+		if(userUuid!=null) {
+			models=mapper.convertToList(reviewDao.getReviewUsingUserUuid(userUuid), ReviewModel.class);
+		}else {
+			models=mapper.convertToList(reviewDao.getReviewUsingHotelUuid(hotelUuid), ReviewModel.class);
+		}
+		
+		
+		return models;
 	}
 
 }
